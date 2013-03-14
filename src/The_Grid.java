@@ -1,4 +1,4 @@
-public class The_Grid {
+ublic class The_Grid {
 
 	/**
 	 * @param args
