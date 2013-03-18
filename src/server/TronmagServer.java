@@ -1,5 +1,11 @@
 package server;
 
+import java.awt.Color;
+
+import info.gridworld.actor.ActorWorld;
+import info.gridworld.actor.Bug;
+import info.gridworld.grid.Location;
+
 public class TronmagServer {
 
 	/**
@@ -8,9 +14,9 @@ public class TronmagServer {
 	 * @param args
 	 */
 	public static void main(String[] args) {
-		// an infinite loop that spawns worker
-		// threads to handle individual client
-		// connections probably needs to be here
+		ActorWorld world = new ActorWorld();
+		Bug b = new Bug();
+		world.add(b);
 	}
 
 }

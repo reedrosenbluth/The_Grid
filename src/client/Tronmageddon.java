@@ -1,5 +1,11 @@
 package client;
 
+import java.awt.Color;
+
+import info.gridworld.actor.ActorWorld;
+import info.gridworld.actor.Bug;
+import info.gridworld.grid.Location;
+
 public class Tronmageddon {
 
 	/**
@@ -8,9 +14,10 @@ public class Tronmageddon {
 	 * @param args
 	 */
 	public static void main(String[] args) {
-		// TODO do some stuff here
-		// (who knows what)
-		// Nick to fill in here: testing!!!!
+		ActorWorld world = new ActorWorld();
+		Bug b = new Bug();
+		world.add(b);
+		world.show();
 
 	}
 
