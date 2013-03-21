@@ -1,24 +1,41 @@
 package client;
 
 import java.awt.Color;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.ObjectInputStream;
+import java.net.Socket;
+import java.net.SocketException;
+
+import base.TronWorld;
 
 import info.gridworld.actor.ActorWorld;
 import info.gridworld.actor.Bug;
 import info.gridworld.grid.Location;
 
-public class Tronmageddon {
+public class Tronmageddon implements Runnable {
 
-	/**
-	 * Execution point for client-side app.
-	 * 
-	 * @param args
-	 */
+	private TronWorld w;
+	private Socket s;
+	
+	private Tronmageddon(Socket s) {
+		this.s = s;
+	}
+	
 	public static void main(String[] args) {
-		ActorWorld world = new ActorWorld();
-		Bug b = new Bug();
-		world.add(b);
-		world.show();
+		try {
+			String host = "localhost";
+			Socket s = new Socket(host, 9002);
+			(new Thread(new Tronmageddon(s))).start();
+		} 
+		catch(IOException e) {
+			e.printStackTrace();
+		}
 
+	}
+	
+	public void run() {
+		
 	}
 
 }

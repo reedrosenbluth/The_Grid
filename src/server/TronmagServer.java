@@ -1,22 +1,46 @@
 package server;
 
-import java.awt.Color;
-
 import info.gridworld.actor.ActorWorld;
 import info.gridworld.actor.Bug;
-import info.gridworld.grid.Location;
 
-public class TronmagServer {
+import java.io.*;
+import java.net.*;
+import java.util.*;
 
-	/**
-	 * Execution point for server side.
-	 * 
-	 * @param args
-	 */
+import base.TronWorld;
+
+
+public class TronmagServer implements Runnable {
+	
+	TronWorld w;
+	Bug b;
+	
+	public TronmagServer() {
+		w = new TronWorld();
+		b = new Bug();
+	}
+
 	public static void main(String[] args) {
-		ActorWorld world = new ActorWorld();
-		Bug b = new Bug();
-		world.add(b);
+		(new Thread(new TronmagServer())).start();
+	}
+	
+	public void run() {
+		try 
+		{
+			ServerSocket s = new ServerSocket(9002);
+			while(true) 
+			{
+				Socket c = s.accept();
+				System.out.println("client connected");
+				GameClientHandler gh = new GameClientHandler(c, this, w);
+				(new Thread(gh)).start();
+			}
+		} 
+		catch(IOException e) 
+		{
+			e.printStackTrace();
+			System.exit(-1);
+		}
 	}
 
 }
