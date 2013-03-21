@@ -1,6 +1,7 @@
 package client;
 
 import java.awt.Color;
+import java.util.*;
 
 import info.gridworld.actor.ActorWorld;
 import info.gridworld.actor.Bug;
@@ -16,9 +17,8 @@ public class Tronmageddon {
 	public static void main(String[] args) {
 		ActorWorld world = new ActorWorld();
 		Bug b = new Bug();
-		world.add(b);
+		ActorBug player = new ActorBug();
+		world.add(player);
 		world.show();
-
 	}
-
 }
