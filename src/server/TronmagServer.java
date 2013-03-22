@@ -13,11 +13,10 @@ import base.TronWorld;
 public class TronmagServer implements Runnable {
 	
 	TronWorld w;
-	Bug b;
+	ArrayList<Bug> players = new ArrayList<Bug>();
 	
 	public TronmagServer() {
 		w = new TronWorld();
-		b = new Bug();
 	}
 
 	public static void main(String[] args) {
@@ -32,7 +31,10 @@ public class TronmagServer implements Runnable {
 			{
 				Socket c = s.accept();
 				System.out.println("client connected");
-				GameClientHandler gh = new GameClientHandler(c, this, w);
+				Bug b = new Bug();
+				players.add(b);
+				w.add(b);
+				GameClientHandler gh = new GameClientHandler(c, b);
 				(new Thread(gh)).start();
 			}
 		} 

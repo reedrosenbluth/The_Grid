@@ -18,22 +18,22 @@ import info.gridworld.grid.Location;
 
 public class GameClientHandler implements Runnable {
 
-	private TronWorld w;
+	private Bug b;
 	private Socket s;
 	private PrintWriter out;
-	private Bug b;
 	
-	public GameClientHandler(Socket s, TronmagServer ts, TronWorld w) throws IOException 
+	public GameClientHandler(Socket s, Bug b) throws IOException 
 	{
 		this.s = s;
 		this.out = new PrintWriter(s.getOutputStream(), true);
-		this.b = new Bug();
-		w.add(b);
-		this.w = w;
+		this.b = b;
 	}
 	
 	public void run() {
-		
+		while(true) {
+			b.act();
+			System.out.println(b.toString());
+		}
 	}
 
 }
