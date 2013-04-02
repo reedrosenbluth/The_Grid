@@ -2,6 +2,8 @@ package server;
 
 import info.gridworld.actor.ActorWorld;
 import info.gridworld.actor.Bug;
+import info.gridworld.grid.BoundedGrid;
+import info.gridworld.grid.Grid;
 
 import java.io.*;
 import java.net.*;
@@ -13,10 +15,12 @@ import base.TronWorld;
 public class TronmagServer implements Runnable {
 	
 	TronWorld w;
+	ArrayList<Socket> sockets = new ArrayList<Socket>();
 	ArrayList<Bug> players = new ArrayList<Bug>();
 	
 	public TronmagServer() {
-		w = new TronWorld();
+		Grid g = new BoundedGrid(100, 100);
+		w = new TronWorld(g);
 	}
 
 	public static void main(String[] args) {
@@ -33,6 +37,7 @@ public class TronmagServer implements Runnable {
 				System.out.println("client connected");
 				Bug b = new Bug();
 				players.add(b);
+				sockets.add(c);
 				w.add(b);
 				GameClientHandler gh = new GameClientHandler(c, b);
 				(new Thread(gh)).start();
