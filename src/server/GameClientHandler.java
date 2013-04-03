@@ -30,10 +30,26 @@ public class GameClientHandler implements Runnable {
 	}
 	
 	public void run() {
-		while(true) {
-			b.act();
-			System.out.println(b.toString());
+		System.out.println("client connected");
+		try {
+			BufferedReader in = new BufferedReader(new InputStreamReader(s.getInputStream()));
+			String inLine;
+			while((inLine = in.readLine()) != null) 
+			{
+				if (inLine.equals("L")) {
+					b.setDirection(b.getDirection() - 90);
+				} 
+				else if (inLine.equals("R")) {
+					b.setDirection(b.getDirection() + 90);
+				}
+			}
+		} catch (Exception e) {
+			System.out.println(e.getStackTrace());
 		}
+	}
+	
+	public Bug getBug() {
+		return b;
 	}
 
 }
