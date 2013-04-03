@@ -18,12 +18,14 @@ public class Tronmageddon {
 	public static void main(String[] args) throws IOException {
 		TronWorld a = new TronWorld();
 		a.show();
+		
 		try
 		{
-			Socket s = new Socket("local host", 9005);
-			System.out.println("Connection successful.");
+			Socket s = new Socket("192.168.15.29", 9005);
 			a.SetSocket(s);
-			s.close();
+			BufferedReader stdin = new BufferedReader(new InputStreamReader(s.getInputStream()));
+			String stdinLine = stdin.readLine();
+			
 		} 
 		catch(IOException e) 
 		{
@@ -32,4 +34,5 @@ public class Tronmageddon {
 			
 		}
 	}
+	
 }
