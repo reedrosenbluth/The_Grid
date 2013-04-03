@@ -11,6 +11,7 @@ import info.gridworld.world.World;
 
 public class TronWorld extends ActorWorld {
 	PrintWriter sout = null;
+	PrintWriter sin = null;
 	
 	public TronWorld() {
 		super(new UnboundedGrid());
@@ -18,7 +19,6 @@ public class TronWorld extends ActorWorld {
 	}
 public void SetSocket(Socket s) throws IOException{
 	sout = new PrintWriter(s.getOutputStream(), true);
-
 }
 	public boolean keyPressed(String description, Location loc) {
 		if(description.equals("LEFT")) {
