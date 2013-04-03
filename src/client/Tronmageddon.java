@@ -18,14 +18,19 @@ public class Tronmageddon {
 	public static void main(String[] args) throws IOException {
 		TronWorld a = new TronWorld();
 		a.show();
+		int x = 0;
+		int y = 0;
 		
 		try
 		{
-			Socket s = new Socket("192.168.15.29", 9005);
+			Socket s = new Socket("192.168.14.6", 9002);
 			a.SetSocket(s);
 			BufferedReader stdin = new BufferedReader(new InputStreamReader(s.getInputStream()));
 			String stdinLine = stdin.readLine();
 			
+			for(int i = 0; i < stdinLine.length(); i = i+4){
+				
+			}
 		} 
 		catch(IOException e) 
 		{
