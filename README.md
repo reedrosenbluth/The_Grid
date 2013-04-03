@@ -1,9 +1,13 @@
 # TODO
 
 ## Server
-- design protocol for sending data back to client
-- interpret moves from client
+- design protocol for communication with client
+- send actors' locations and colors to client
+- send trails' locations and colors to client
+- take inputs from client and transfer to movement in specific actors
 
 ## Client
-- send moves to server
-- present input from server on grid
+- receive data from server
+- choose bug color
+- show grid and populate with data from server
+- send keyboard input to server
