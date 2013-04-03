@@ -23,7 +23,6 @@ public class Tronmageddon {
 			Socket s = new Socket("local host", 9005);
 			System.out.println("Connection successful.");
 			a.SetSocket(s);
-			s.close();
 		} 
 		catch(IOException e) 
 		{
