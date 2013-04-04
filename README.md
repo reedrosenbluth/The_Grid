@@ -10,4 +10,3 @@
 - receive data from server
 - choose bug color
 - show grid and populate with data from server
-- send keyboard input to server

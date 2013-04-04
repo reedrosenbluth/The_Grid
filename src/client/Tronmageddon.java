@@ -6,8 +6,22 @@ import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.net.Socket;
 import java.net.UnknownHostException;
+import java.awt.Color;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.ObjectInputStream;
+import java.net.Socket;
+import java.net.SocketException;
 
-public class Tronmageddon {
+import base.TronWorld;
+
+import info.gridworld.actor.ActorWorld;
+import info.gridworld.actor.Bug;
+import info.gridworld.grid.BoundedGrid;
+import info.gridworld.grid.Grid;
+import info.gridworld.grid.Location;
+
+public class Tronmageddon implements Runnable {
 
 	/**
 	 * Execution point for client-side app.
@@ -16,14 +30,16 @@ public class Tronmageddon {
 	 * @throws IOException 
 	 */
 	public static void main(String[] args) throws IOException {
-		TronWorld a = new TronWorld();
+		Grid g = new BoundedGrid(100, 100);
+		TronWorld a = new TronWorld(g);
 		a.show();
+		
 		int x = 0;
 		int y = 0;
 		
 		try
 		{
-			Socket s = new Socket("192.168.14.6", 9002);
+			Socket s = new Socket("localhost", 9002);
 			a.SetSocket(s);
 			BufferedReader stdin = new BufferedReader(new InputStreamReader(s.getInputStream()));
 			String stdinLine = stdin.readLine();
@@ -39,4 +55,9 @@ public class Tronmageddon {
 			
 		}
 	}
+	
+	public void run() {
+		
+	}
+
 }
