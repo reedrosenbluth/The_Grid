@@ -2,6 +2,7 @@ package server;
 
 import info.gridworld.actor.Bug;
 
+import java.awt.Color;
 import java.io.IOException;
 import java.net.ServerSocket;
 import java.net.Socket;
@@ -27,7 +28,8 @@ public class Listener implements Runnable {
 			while(true) 
 			{
 				Socket c = s.accept();
-				Bug b = new Bug();
+				Color rc = new Color((int) (Math.random() * 255), (int) (Math.random() * 255), (int) (Math.random() * 255));
+				Bug b = new Bug(rc);
 				w.add(b);
 				GameClientHandler gh = new GameClientHandler(c, b);
 				handlers.add(gh);

@@ -15,8 +15,9 @@ public class TronmagServer implements Runnable {
 	ArrayList<GameClientHandler> handlers;
 	
 	public TronmagServer() {
-		Grid g = new BoundedGrid(100, 100);
+		Grid g = new BoundedGrid(46, 94);
 		w = new TronWorld(g);
+		w.show();
 		handlers = new ArrayList<GameClientHandler>();
 		
 		(new Thread(new Listener(w, handlers))).start();
@@ -31,14 +32,15 @@ public class TronmagServer implements Runnable {
 	public void run() {
 		while(true) {
 			try {
-				Thread.sleep(1000);
-				System.out.println("Gameplay Loop");
-				for (GameClientHandler h : handlers) {
-					Bug b = h.getBug();
-					b.act();
-					System.out.println(b.toString());
-					
-				}
+				Thread.sleep(100);
+				w.step();
+				w.show();
+//				for (GameClientHandler h : handlers) {
+//					Bug b = h.getBug();
+//					b.act();
+//					System.out.println(b.toString());
+//					
+//				}
 			} catch(Exception e) {
 				
 			}
