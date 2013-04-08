@@ -46,6 +46,9 @@ public class GameClientHandler implements Runnable {
 		} catch (Exception e) {
 			System.out.println(e.getStackTrace());
 		}
+		int x = b.getLocation().getCol();
+		int y = b.getLocation().getRow();
+		out.println("." + " " + x + " " + y + " " + b.getColor());
 	}
 	
 	public Bug getBug() {

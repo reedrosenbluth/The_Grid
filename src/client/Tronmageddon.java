@@ -40,7 +40,7 @@ public class Tronmageddon implements Runnable {
 		
 		try
 		{
-			Socket s = new Socket("192.168.12.82", 9005);
+			Socket s = new Socket("localhost", 9002);
 			a.SetSocket(s);
 //			sout = new PrintWriter(s.getOutputStream(), true);
 //			sout.println(Color.BLUE.getRGB() + " Tyler");
