@@ -39,7 +39,7 @@ public class Tronmageddon implements Runnable {
 		
 		try
 		{
-			Socket s = new Socket("192.168.13.136", 9002);
+			Socket s = new Socket("192.168.15.67", 9002);
 			a.SetSocket(s);
 			BufferedReader stdin = new BufferedReader(new InputStreamReader(s.getInputStream()));
 			String stdinLine = stdin.readLine();
