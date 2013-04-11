@@ -51,5 +51,10 @@ public class GameClientHandler implements Runnable {
 	public Bug getBug() {
 		return b;
 	}
+	
+	public void send(String msg) throws IOException 
+	{
+		out.println(msg);
+	}
 
 }

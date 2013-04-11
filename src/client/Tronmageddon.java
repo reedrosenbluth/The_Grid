@@ -22,6 +22,7 @@ import info.gridworld.grid.Grid;
 import info.gridworld.grid.Location;
 
 public class Tronmageddon implements Runnable {
+	static PrintWriter sout = null;
 
 	/**
 	 * Execution point for client-side app.
@@ -30,7 +31,7 @@ public class Tronmageddon implements Runnable {
 	 * @throws IOException 
 	 */
 	public static void main(String[] args) throws IOException {
-		Grid g = new BoundedGrid(100, 100);
+		Grid g = new BoundedGrid(46, 94);
 		TronWorld a = new TronWorld(g);
 		a.show();
 		
@@ -39,12 +40,22 @@ public class Tronmageddon implements Runnable {
 		
 		try
 		{
-			Socket s = new Socket("192.168.15.67", 9002);
+			Socket s = new Socket("localhost", 9002);
 			a.SetSocket(s);
+//			sout = new PrintWriter(s.getOutputStream(), true);
+//			sout.println(Color.BLUE.getRGB() + " Tyler");
 			BufferedReader stdin = new BufferedReader(new InputStreamReader(s.getInputStream()));
 			String stdinLine = stdin.readLine();
 			
 			while((stdinLine = stdin.readLine()) != null && s.isConnected()){
+				String[] p = stdinLine.split(" ");
+				if(p[0].equals("."))
+				{
+					Bug b = new Bug(new Color(Integer.parseInt(p[4]), Integer.parseInt(p[5]), Integer.parseInt(p[6])));
+					b.setDirection(Integer.parseInt(p[3]));
+					g.put(new Location(Integer.parseInt(p[2]), Integer.parseInt(p[1])), b);
+				}
+				a.show();
 				System.out.println(stdinLine);
 			}
 		} 
