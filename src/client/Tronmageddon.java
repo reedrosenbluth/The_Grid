@@ -12,6 +12,7 @@ import java.io.InputStream;
 import java.io.ObjectInputStream;
 import java.net.Socket;
 import java.net.SocketException;
+import java.util.ArrayList;
 
 import base.TronWorld;
 
@@ -40,17 +41,22 @@ public class Tronmageddon implements Runnable {
 		
 		try
 		{
-			Socket s = new Socket("localhost", 9002);
+			Socket s = new Socket("192.168.12.170", 9002);
 			a.SetSocket(s);
 //			sout = new PrintWriter(s.getOutputStream(), true);
 //			sout.println(Color.BLUE.getRGB() + " Tyler");
 			BufferedReader stdin = new BufferedReader(new InputStreamReader(s.getInputStream()));
 			String stdinLine = stdin.readLine();
+			ArrayList<Location> occupied = new ArrayList<Location>();
 			
 			while((stdinLine = stdin.readLine()) != null && s.isConnected()){
 				String[] p = stdinLine.split(" ");
 				if(p[0].equals("."))
 				{
+					occupied = g.getOccupiedLocations();
+					for (Location o : occupied) {
+						g.remove(o);
+					}
 					Bug b = new Bug(new Color(Integer.parseInt(p[4]), Integer.parseInt(p[5]), Integer.parseInt(p[6])));
 					b.setDirection(Integer.parseInt(p[3]));
 					g.put(new Location(Integer.parseInt(p[2]), Integer.parseInt(p[1])), b);
