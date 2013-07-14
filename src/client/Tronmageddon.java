@@ -43,8 +43,6 @@ public class Tronmageddon implements Runnable {
 		{
 			Socket s = new Socket("192.168.12.170", 9002);
 			a.SetSocket(s);
-//			sout = new PrintWriter(s.getOutputStream(), true);
-//			sout.println(Color.BLUE.getRGB() + " Tyler");
 			BufferedReader stdin = new BufferedReader(new InputStreamReader(s.getInputStream()));
 			String stdinLine = stdin.readLine();
 			ArrayList<Location> occupied = new ArrayList<Location>();
